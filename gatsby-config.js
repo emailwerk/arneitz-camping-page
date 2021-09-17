@@ -1,6 +1,6 @@
 const path = require('path')
 
-// const siteMetadata = require('./site-metadata')
+const siteMetadata = require('./site-metadata')
 
 module.exports = {
   siteMetadata,
@@ -37,8 +37,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: "title", //siteMetadata.title,
-        short_name: "title", //siteMetadata.title,
+        name: siteMetadata.title,
+        short_name: siteMetadata.title,
         start_url: '/',
         background_color: '#6b37bf',
         theme_color: '#6b37bf',

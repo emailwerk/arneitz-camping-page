@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkarneitz_camping_page=self.webpackChunkarneitz_camping_page||[]).push([[883],{25279:function(n,t,e){e.r(t);var u=e(67294),a=e(7611);t.default=function(){return(0,a.jsx)(u.Fragment,null,(0,a.jsx)("h1",null,"404: Not Found"),(0,a.jsx)("p",null,"You just hit a route that doesn't exist... the sadness."))}}}]);
+//# sourceMappingURL=component---src-pages-404-js-3c287c4ebed93d461017.js.map

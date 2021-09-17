@@ -1,6 +1,6 @@
 const path = require('path')
 
-const siteMetadata = require('./site-metadata')
+// const siteMetadata = require('./site-metadata')
 
 module.exports = {
   siteMetadata,

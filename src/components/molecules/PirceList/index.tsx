@@ -3,12 +3,9 @@ import {fields} from '@snek-at/jaen-pages'
 import BsPersonFill from '@react-icons/all-files/bs/BsPersonFill'
 import React from 'react'
 
-import {
-  StandardColumn,
-  BikeshowColumn,
-  ColoredColumn,
-  MultiIconColumn
-} from './colums'
+import {StandardColumn, ColoredColumn, MultiIconColumn} from './colums'
+
+import GTIMeetingHidden from './hidden'
 
 const PriceList = () => {
   return (
@@ -130,15 +127,15 @@ const PriceList = () => {
           </Box>
         </Flex>
         <MultiIconColumn
-          icons={
+          values={
             [
               /*icons*/
             ]
           }
           seperators={['/']}
-          fieldNameAddon=""
-          lowseasonPrice="11,-"
-          mainseasonPrice=""
+          fieldNameAddon="idfc"
+          type="standard"
+          initValues={['11,-', '-']}
         />
         <StandardColumn
           icon={}
@@ -155,14 +152,14 @@ const PriceList = () => {
           fieldNameAddon="car"
         />
         <ColoredColumn
-          bgcolor=""
-          color=""
+          bgcolor="blue"
+          color="türkis"
           lowseasonPrice=""
           mainseasonPrice="38,-"
         />
         <ColoredColumn
-          bgcolor=""
-          color=""
+          bgcolor="orange"
+          color="orange"
           lowseasonPrice=""
           mainseasonPrice="43,-"
         />
@@ -198,49 +195,45 @@ const PriceList = () => {
             <Heading>Stellplatz</Heading>
           </Box>
         </Flex>
-        <BikeshowColumn
+        <MultiIconColumn
           values={
             [
               /*icons*/
             ]
           }
           seperators={['inkl.', '/']}
-          priceAdult="17,-"
-          priceChild="9,-"
-          priceParking="-"
+          initValues={['17,-', '9,-', '-']}
           fieldNameAddon="person"
+          type="bike-show"
         />
-        <BikeshowColumn
+        <MultiIconColumn
           values={
             [
               /*icons*/
             ]
           }
           seperators={['oder']}
-          priceAdult="-"
-          priceChild="-"
-          priceParking="10,-"
+          initValues={['-', '-', '10,-']}
           fieldNameAddon="car"
+          type="bike-show"
         />
-        <BikeshowColumn
+        <MultiIconColumn
           values={
             [
               /*icons*/
             ]
           }
           seperators={['/']}
-          priceAdult="-"
-          priceChild="-"
-          priceParking="20,-"
+          initValues={['-', '-', '20,-']}
           fieldNameAddon="camper"
+          type="bike-show"
         />
-        <BikeShowColumn
+        <MultiIconColumn
           values={['XXL Camper', 'Caravan']}
           seperators={['/']}
-          priceAdult="-"
-          priceChild="-"
-          priceParking="30,-"
+          initValues={['-', '-', '30,-']}
           fieldNameAddon="xxl"
+          type="bike-show"
         />
       </Box>
       <Box className="gti">

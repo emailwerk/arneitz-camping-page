@@ -1,4 +1,4 @@
-import {Box, Flex, Heading} from '@chakra-ui/react'
+import {Box, Flex, Heading, Text} from '@chakra-ui/react'
 import {fields} from '@snek-at/jaen-pages'
 
 export const StandardColumn = (props: {
@@ -112,5 +112,34 @@ export const ColoredColumn = (props: {
   lowseasonPrice: string
   mainseasonPrice: string
 }): JSX.Element => {
-  return <></>
+  return (
+    <>
+      <Flex bg={props.bgcolor}>
+        <Box width="60%">
+          <Text>Mindestgebühr</Text>
+          <Flex>
+            <Text>
+              für 1 oder 2 Personen{' '}
+              {props.color.charAt(0).toUpperCase() + props.color.substring(1)}
+            </Text>
+            {/* Icons */}
+          </Flex>
+        </Box>
+        <Box width="20%" textAlign="center">
+          <fields.TextField
+            fieldName={`pricelist-lowseason-${props.color}`}
+            initValie={props.lowseasonPrice}
+            rtf={false}
+          />
+        </Box>
+        <Box width="20%" textAlign="center">
+          <fields.TextField
+            fieldName={`pricelist-mainseason-${props.color}`}
+            initValie={props.mainseasonPrice}
+            rtf={false}
+          />
+        </Box>
+      </Flex>
+    </>
+  )
 }

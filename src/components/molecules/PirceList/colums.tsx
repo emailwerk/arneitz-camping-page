@@ -36,13 +36,74 @@ export const StandardColumn = (props: {
 }
 
 export const MultiIconColumn = (props: {
-  icons: any[]
+  type: string // standard or bike-show
+  values: any[]
   seperators: string[]
-  mainseasonPrice: string
-  lowseasonPrice: string
+  initValues: string[]
   fieldNameAddon: string
-}) => {
-  return null
+}): JSX.Element => {
+  let seperatedValues = []
+
+  if (props.seperators.length > 0) {
+    for (let i = 0; i < props.values.length; i++) {
+      seperatedValues.push(props.values[i])
+      if (i !== props.values.length - 1) {
+        if (props.seperators.length > i) {
+          seperatedValues.push(props.seperators[i])
+        } else {
+          seperatedValues.push(props.seperators[props.seperators.length - 1])
+        }
+      }
+    }
+  } else {
+    seperatedValues = props.values
+  }
+
+  const fieldNames = []
+
+  if (props.type === 'standard') {
+    fieldNames.push(`pricelist-lowseason-${props.fieldNameAddon}`)
+    fieldNames.push(`pricelist-mainseason-${props.fieldNameAddon}`)
+  } else if (props.type === 'bike-show') {
+    fieldNames.push(`pricelist-bikeshow-${props.fieldNameAddon}-adult`)
+    fieldNames.push(`pricelist-bikeshow-${props.fieldNameAddon}-child`)
+    fieldNames.push(`pricelist-bikeshow-${props.fieldNameAddon}-parking`)
+  }
+
+  return (
+    <>
+      <Flex>
+        <Box width={props.type === 'standard' ? '60%' : '40%'}>
+          {seperatedValues}
+        </Box>
+        <Box width="20%" textAlign="center">
+          <fields.TextField
+            fieldName={fieldNames[0]}
+            initValue={props.initValues[0]}
+            rtf={false}
+          />
+        </Box>
+        <Box width="20%" textAlign="center">
+          <fields.TextField
+            fieldName={fieldNames[1]}
+            initValue={props.initValues[1]}
+            rtf={false}
+          />
+        </Box>
+        {props.type === 'bike-show' ? (
+          <Box width="20%" textAlign="center">
+            <fields.TextField
+              fieldName={fieldNames[2]}
+              initValue={props.initValues[2]}
+              rtf={false}
+            />
+          </Box>
+        ) : (
+          <></>
+        )}
+      </Flex>
+    </>
+  )
 }
 
 export const ColoredColumn = (props: {
@@ -50,17 +111,6 @@ export const ColoredColumn = (props: {
   color: string
   lowseasonPrice: string
   mainseasonPrice: string
-}) => {
-  return null
-}
-
-export const BikeshowColumn = (props: {
-  seperators: string[]
-  values: any[]
-  priceAdult: string
-  priceChild: string
-  priceParking: string
-  fieldNameAddon: string
-}) => {
-  return null
+}): JSX.Element => {
+  return <></>
 }

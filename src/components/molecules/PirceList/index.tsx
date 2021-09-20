@@ -57,7 +57,7 @@ const PriceList = () => {
             <Heading fontSize="sm">Hauptsaison</Heading>
             <Flex>
               <fields.TextField
-                fieldname="pricelist-mainseason-start"
+                fieldName="pricelist-mainseason-start"
                 initValue="<p>01.07.</p>"
                 rtf={false}
               />
@@ -75,21 +75,21 @@ const PriceList = () => {
           text="(ab 10 Jahre)"
           lowseasonPrice="9,-"
           mainseasonPrice="10,-"
-          fieldNameAddon="over10years"
+          fieldNameAddon="adult"
         />
         <StandardColumn
           icon={'Text'}
           text="(3-9 Jahre)"
           lowseasonPrice="8,-"
           mainseasonPrice="9,-"
-          fieldNameAddon="over2years"
+          fieldNameAddon="over3"
         />
         <StandardColumn
           icon={'Text'}
           text="Kinder(0-2 Jahre)"
           lowseasonPrice="frei"
           mainseasonPrice="frei"
-          fieldNameAddon="under2years"
+          fieldNameAddon="under3"
         />
         <Flex>
           <Box width="60%">
@@ -166,7 +166,7 @@ const PriceList = () => {
               <Heading fontSize="sm">Arneitz Bike Show</Heading>
               <Box width="20%" textAlign="center">
                 <fields.TextField
-                  fieldName="pricelist-bikeshow-startdate"
+                  fieldName="pricelist-bikeshow-start"
                   initValue="<p>04.09.</p>"
                   rtf={false}
                 />
@@ -174,7 +174,7 @@ const PriceList = () => {
               <Text mx="1">-</Text>
               <Box width="20%" textAlign="center">
                 <fields.TextField
-                  fieldName="pricelist-bikeshow-enddate"
+                  fieldName="pricelist-bikeshow-end"
                   initValue="<p>12.09.</p>"
                   rtf={false}
                 />

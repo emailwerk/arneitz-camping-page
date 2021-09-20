@@ -4,17 +4,15 @@
 // import BlogSection from '../../organisms/BlogSection'
 //> Components
 import {Box} from '@chakra-ui/react'
+import Calculator from '../components/molecules/Calculator'
 import PriceList from '../components/molecules/PirceList'
-import {usePages} from '@snek-at/jaen-pages/src/contexts/cms'
 //#endregion
 
 //#region > Components
 const IndexPage = () => {
-  const fields = usePages()?.nodes?.['SitePage /']?.fields
-  console.log(fields)
-
   return (
     <Box width="60%">
+      <Calculator />
       <PriceList />
     </Box>
   )

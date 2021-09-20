@@ -1,11 +1,8 @@
 import {Box, Flex, Text, Heading} from '@chakra-ui/react'
 import {fields} from '@snek-at/jaen-pages'
-import BsPersonFill from '@react-icons/all-files/bs/BsPersonFill'
 import React from 'react'
 
 import {StandardColumn, ColoredColumn, MultiIconColumn} from './colums'
-
-import GTIMeetingHidden from './hidden'
 
 const PriceList = () => {
   return (
@@ -248,7 +245,6 @@ const PriceList = () => {
             <Text ml="1">vor & nach dem Treffen</Text>
           </Flex>
         </Box>
-        <GTIMeetingHidden />
         <Flex>
           <Box width="40%">
             <Flex>

@@ -5,11 +5,14 @@
 //> Components
 import {Box} from '@chakra-ui/react'
 import PriceList from '../components/molecules/PirceList'
-
+import {usePages} from '@snek-at/jaen-pages/src/contexts/cms'
 //#endregion
 
 //#region > Components
 const IndexPage = () => {
+  const fields = usePages()?.nodes?.['SitePage /']?.fields
+  console.log(fields)
+
   return (
     <Box width="60%">
       <PriceList />

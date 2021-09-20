@@ -2,7 +2,7 @@
   "name": "arneitz-camping-page",
   "version": "1.2.0",
   "description": "A template repository for Jaen",
-  "homepage": "https://arneitz-camping-page.emailwerk.snek.at/",
+  "homepage": "https://jaen-arneitz-camping-page.emailwerk.snek.at/",
   "author": "Florian Kleber",
   "license": "EUPL-1.2",
   "main": "lib/index.js",
@@ -15,10 +15,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/emailwerk/arneitz-camping-page.git"
+    "url": "git+https://github.com/emailwerk/jaen-arneitz-camping-page.git"
   },
   "bugs": {
-    "url": "https://github.com/emailwerk/arneitz-camping-page/issues"
+    "url": "https://github.com/emailwerk/jaen-arneitz-camping-page/issues"
   },
   "scripts": {
     "build": "gatsby build",

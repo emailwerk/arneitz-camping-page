@@ -28,14 +28,14 @@ const PriceList = () => {
             <Text fontSize="xs">Preis pro Nacht in Euro</Text>
           </Box>
           <Box width="20%" textAlign="center">
-            <Heading>Nebensaison</Heading>
+            <Heading fontSize="sm">Nebensaison</Heading>
             <Flex>
               <fields.TextField
                 fieldName="pricelist-springseason-start"
                 initValue="<p>15.04.</p>"
                 rtf={false}
               />
-              <Text mx="1">-</Text>
+              <Text>-</Text>
               <fields.TextField
                 fieldName="pricelist-springseason-end"
                 initValue="<p>01.07.</p>"
@@ -48,7 +48,7 @@ const PriceList = () => {
                 initValue="<p>12.09.</p>"
                 rtf={false}
               />
-              <Text mx="1">-</Text>
+              <Text>-</Text>
               <fields.TextField
                 fieldName="pricelist-autumnseason-end"
                 initValue="<p>30.09.</p>"
@@ -57,36 +57,38 @@ const PriceList = () => {
             </Flex>
           </Box>
           <Box width="20%" textAlign="center">
-            <Heading>Hauptsaison</Heading>
-            <fields.TextField
-              fieldname="pricelist-mainseason-start"
-              initValue="<p>01.07.</p>"
-              rtf={false}
-            />
-            <Text mx="1">-</Text>
-            <fields.TextField
-              fieldName="pricelist-mainseason-end"
-              initValue="<p>04.09.</p>"
-              rtf={false}
-            />
+            <Heading fontSize="sm">Hauptsaison</Heading>
+            <Flex>
+              <fields.TextField
+                fieldname="pricelist-mainseason-start"
+                initValue="<p>01.07.</p>"
+                rtf={false}
+              />
+              <Text>-</Text>
+              <fields.TextField
+                fieldName="pricelist-mainseason-end"
+                initValue="<p>04.09.</p>"
+                rtf={false}
+              />
+            </Flex>
           </Box>
         </Flex>
         <StandardColumn
-          icon={<BsPersonFill />}
+          icon={'Text'}
           text="(ab 10 Jahre)"
           lowseasonPrice="9,-"
           mainseasonPrice="10,-"
           fieldNameAddon="over10years"
         />
         <StandardColumn
-          icon={<BsPersonFill />}
+          icon={'Text'}
           text="(3-9 Jahre)"
           lowseasonPrice="8,-"
           mainseasonPrice="9,-"
           fieldNameAddon="over2years"
         />
         <StandardColumn
-          icon={<BsPersonFill />}
+          icon={'Text'}
           text="Kinder(0-2 Jahre)"
           lowseasonPrice="frei"
           mainseasonPrice="frei"
@@ -103,7 +105,7 @@ const PriceList = () => {
           </Box>
           <Box width="20%">
             <Box>
-              <Box bg="blue" textAlign="center">
+              <Box bg="teal.300" textAlign="center">
                 <fields.TextField
                   fieldName="pricelist-lowseason-blue-parking"
                   initValue="<p>11,-</p>"
@@ -127,102 +129,105 @@ const PriceList = () => {
           </Box>
         </Flex>
         <MultiIconColumn
-          values={
-            [
-              /*icons*/
-            ]
-          }
+          values={['Text', 'Text', 'Text']}
           seperators={['/']}
           fieldNameAddon="idfc"
           type="standard"
           initValues={['11,-', '-']}
         />
         <StandardColumn
-          icon={}
+          icon={'Text'}
           text="Hund"
           lowseasonPrice="5,-"
           mainseasonPrice="5,-"
           fieldNameAddon="dog"
         />
         <StandardColumn
-          icon={}
+          icon={'Text'}
           text="extra Auto"
           lowseasonPrice="5,-"
           mainseasonPrice="5,-"
           fieldNameAddon="car"
         />
         <ColoredColumn
-          bgcolor="blue"
+          bgcolor="teal.300"
           color="türkis"
-          lowseasonPrice=""
+          lowseasonPrice="-"
           mainseasonPrice="38,-"
         />
         <ColoredColumn
           bgcolor="orange"
           color="orange"
-          lowseasonPrice=""
+          lowseasonPrice="-"
           mainseasonPrice="43,-"
         />
       </Box>
       <Box className="bikeshow">
         <Flex>
-          <Box width="40%" textAlign="center">
+          <Box width="40%">
             <Flex>
-              <Heading>Arneitz Bike Show</Heading>
-              <fields.TextField
-                fieldName="pricelist-bikeshow-startdate"
-                initValue="<p>04.09.</p>"
-                rtf={false}
-              />
+              <Heading fontSize="sm">Arneitz Bike Show</Heading>
+              <Box width="20%" textAlign="center">
+                <fields.TextField
+                  fieldName="pricelist-bikeshow-startdate"
+                  initValue="<p>04.09.</p>"
+                  rtf={false}
+                />
+              </Box>
               <Text mx="1">-</Text>
-              <fields.TextField
-                fieldName="pricelist-bikeshow-enddate"
-                initValue="<p>12.09.</p>"
-                rtf={false}
-              />
+              <Box width="20%" textAlign="center">
+                <fields.TextField
+                  fieldName="pricelist-bikeshow-enddate"
+                  initValue="<p>12.09.</p>"
+                  rtf={false}
+                />
+              </Box>
             </Flex>
           </Box>
           <Box width="20%" textAlign="center">
-            <Heading>Erwachsener</Heading>
+            <Heading fontSize="sm">Erwachsener</Heading>
           </Box>
           <Box width="20%" textAlign="center">
             <Flex>
-              <Heading>Kinder</Heading>
+              <Heading fontSize="sm">Kinder</Heading>
               <Text ml="1">(3-9 J.)</Text>
             </Flex>
           </Box>
           <Box width="20%">
-            <Heading>Stellplatz</Heading>
+            <Heading fontSize="sm">Stellplatz</Heading>
           </Box>
         </Flex>
         <MultiIconColumn
-          values={
-            [
-              /*icons*/
-            ]
-          }
+          values={[
+            /*icons*/
+            'Text',
+            'Text',
+            'Text'
+          ]}
           seperators={['inkl.', '/']}
           initValues={['17,-', '9,-', '-']}
           fieldNameAddon="person"
           type="bike-show"
         />
         <MultiIconColumn
-          values={
-            [
-              /*icons*/
-            ]
-          }
+          values={[
+            /*icons*/
+            'Text',
+            'Text',
+            'Text'
+          ]}
           seperators={['oder']}
           initValues={['-', '-', '10,-']}
           fieldNameAddon="car"
           type="bike-show"
         />
         <MultiIconColumn
-          values={
-            [
-              /*icons*/
-            ]
-          }
+          values={[
+            /*icons*/
+            'Text',
+            'Text',
+            'Text'
+          ]}
           seperators={['/']}
           initValues={['-', '-', '20,-']}
           fieldNameAddon="camper"
@@ -239,7 +244,7 @@ const PriceList = () => {
       <Box className="gti">
         <Box width="100%">
           <Flex>
-            <Heading>GTI Treffen</Heading>
+            <Heading fontSize="sm">GTI Treffen</Heading>
             <Text ml="1">vor & nach dem Treffen</Text>
           </Flex>
         </Box>
@@ -247,18 +252,19 @@ const PriceList = () => {
         <Flex>
           <Box width="40%">
             <Flex>
-              <BsPersonFill />
+              Text
               {/* car icon */}
+              Text
             </Flex>
           </Box>
+          <Box width="60%" textAlign="center">
+            <fields.TextField
+              fieldName="pricelist-gti-price"
+              initValue="<p>17,-</p>"
+              rtf={false}
+            />
+          </Box>
         </Flex>
-        <Box width="60%" textAlign="center">
-          <fields.TextField
-            fieldName="pricelist-gti-price"
-            initValue="<p>17,-</p>"
-            rtf={false}
-          />
-        </Box>
       </Box>
       <Text width="100%" textAlign="center" fontSize="xs">
         Unsere Preise verstehen sich ohne Ortstaxe. Änderungen vorbehalten.

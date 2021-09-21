@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.4.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_00000022527135663507929630000010699813966709054112_);}
+	.st1{fill:url(#SVGID_00000040548483886781650120000005180621139939189423_);}
+	.st2{clip-path:url(#SVGID_00000070092003164963828510000009857615292928432056_);}
+	.st3{fill:#AC242D;}
+</style>
+<g>
+	<defs>
+		<path id="SVGID_1_" d="M11.51,488.23c0,269.51,218.48,488,488,488s488-218.48,488-488s-218.48-488-488-488c-0.03,0-0.05,0-0.08,0
+			C229.95,0.28,11.51,218.75,11.51,488.23L11.51,488.23"/>
+	</defs>
+	<clipPath id="SVGID_00000181785307569057363660000003541389513203963313_">
+		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+	</clipPath>
+	<g style="clip-path:url(#SVGID_00000181785307569057363660000003541389513203963313_);">
+		
+			<radialGradient id="SVGID_00000049924041835676815420000016107241840108324782_" cx="-289.0984" cy="606.3947" r="7.5471" gradientTransform="matrix(81.01 0 0 -81.01 23823.8594 49439.4531)" gradientUnits="userSpaceOnUse">
+			<stop  offset="0" style="stop-color:#FFFFFF"/>
+			<stop  offset="0.04" style="stop-color:#FFFEF9"/>
+			<stop  offset="0.1" style="stop-color:#FFFBE9"/>
+			<stop  offset="0.17" style="stop-color:#FFF7CD"/>
+			<stop  offset="0.24" style="stop-color:#FFF1A7"/>
+			<stop  offset="0.31" style="stop-color:#FEE976"/>
+			<stop  offset="0.39" style="stop-color:#FEDF3B"/>
+			<stop  offset="0.39" style="stop-color:#FEDF39"/>
+			<stop  offset="0.51" style="stop-color:#FEDE37"/>
+			<stop  offset="1" style="stop-color:#FEDB32"/>
+		</radialGradient>
+		
+			<rect x="11.43" y="0.23" style="fill:url(#SVGID_00000049924041835676815420000016107241840108324782_);" width="975.92" height="976.07"/>
+	</g>
+</g>
+<g>
+	<defs>
+		<path id="SVGID_00000163075272157433953210000006496585151354550963_" d="M454.68,544.61l97.66-318.64L671.5,649.59
+			c-60.38-69.94-132.65-104.88-216.83-104.83 M459.51,128.38v10.57c22.39,6.59,33.58,22.84,33.58,48.75
+			c-0.14,13.16-2.2,26.23-6.11,38.79L299.2,849.59c-25.76,86.19-57.89,131.72-96.38,136.6V1000h217.28v-13.81
+			c-39.32,0-59.09-24.68-59.09-74.04c2.49-16.68,4.38-29.36,5.81-38.19c2.79-19.4,4.53-30.19,5.28-32.38l67.92-232.3
+			c82.11,0,152.55,32.7,211.32,98.11c52.93,59.47,79.37,122.62,79.32,189.43c0.68,19.71-3.03,39.33-10.87,57.43
+			c-8.31,15.79-22.93,27.31-40.23,31.7v13.81h241.51v-13.81c-15.09,0-29.11-10.79-42.04-32.38c-8.7-15.79-15.32-32.63-19.7-50.11
+			L670.67,229.14l-8.38-41.58c2.11-25.96,13.08-42.21,32.91-48.75v-10.57L459.51,128.38z"/>
+	</defs>
+	<clipPath id="SVGID_00000108990976813869016940000017136611815833324711_">
+		<use xlink:href="#SVGID_00000163075272157433953210000006496585151354550963_"  style="overflow:visible;"/>
+	</clipPath>
+	<g style="clip-path:url(#SVGID_00000108990976813869016940000017136611815833324711_);">
+		<rect x="-56.42" y="-18.33" class="st3" width="3038.92" height="1027.39"/>
+	</g>
+</g>
+</svg>

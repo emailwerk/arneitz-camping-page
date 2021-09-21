@@ -4,16 +4,14 @@
 // import BlogSection from '../../organisms/BlogSection'
 //> Components
 import {Box} from '@chakra-ui/react'
-import Calculator from '../components/molecules/Calculator'
-import PriceList from '../components/molecules/PirceList'
+import CalculatorSection from '../components/organisms/CalculatorSection'
 //#endregion
 
 //#region > Components
 const IndexPage = () => {
   return (
-    <Box width="60%">
-      <Calculator />
-      <PriceList />
+    <Box>
+      <CalculatorSection />
     </Box>
   )
 }

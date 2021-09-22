@@ -2,10 +2,15 @@ import {
   Box,
   Button,
   Center,
+  Collapse,
   Heading,
-  HStack,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
   Text,
-  VStack,
+  useDisclosure,
   Wrap
 } from '@chakra-ui/react'
 import {StaticImage} from 'gatsby-plugin-image'
@@ -18,7 +23,7 @@ const Calculator = () => {
   const data = fetchData()
   const [season, setSeason] = React.useState<string>('')
   const [price, setPrice] = React.useState<number>(0)
-  const stepPrice = 4
+  const [step, setStep] = React.useState<number>(0)
 
   const SeasonStep = () => {
     return (
@@ -44,7 +49,11 @@ const Calculator = () => {
                 color="white"
                 _hover={{bg: 'gray.600'}}
                 display="box"
-                minW="200px">
+                minW="200px"
+                onClick={() => {
+                  setSeason('springseason')
+                  setStep(1)
+                }}>
                 <Text>Nebensaison Frühling</Text>
                 <Text>
                   {data.springseason.start} - {data.springseason.end}
@@ -56,7 +65,10 @@ const Calculator = () => {
                 bg="black"
                 color="white"
                 _hover={{bg: 'gray.600'}}
-                onClick={() => setSeason('mainseason')}
+                onClick={() => {
+                  setSeason('mainseason')
+                  setStep(1)
+                }}
                 display="box"
                 minW="200px">
                 <Text>Hauptsaison</Text>
@@ -71,7 +83,10 @@ const Calculator = () => {
                 color="white"
                 display="box"
                 _hover={{bg: 'gray.600'}}
-                onClick={() => setSeason('autumnseason')}
+                onClick={() => {
+                  setSeason('autumnseason')
+                  setStep(1)
+                }}
                 minW="200px">
                 <Text>Nebensaison Herbst</Text>
                 <Text>
@@ -85,7 +100,10 @@ const Calculator = () => {
                 color="white"
                 display="box"
                 _hover={{bg: 'gray.600'}}
-                onClick={() => setSeason('autumnseason')}
+                onClick={() => {
+                  setSeason('bikeshow')
+                  setStep(1)
+                }}
                 minW="200px">
                 <Text>Bikeshow</Text>
                 <Text>
@@ -99,75 +117,115 @@ const Calculator = () => {
     )
   }
 
-  const Step = (props: {
-    current: number
-    prev: number
-    next: number
-    text: string
-    icon: string
-  }) => {
-    let amount = 0
+  const Step = (props: {text: string; icon: string}) => {
+    const stepPrice = 1
+    const [amount, setAmount] = React.useState<number>(3)
+    const {isOpen, onToggle} = useDisclosure()
+
     return (
-      <Box alignContent="center" justifyContent="center" width="100%">
-        <Text>{props.text}</Text>
-        <HStack spacing="3">
-          <Button
-            variant="fill"
-            bg="black"
-            color="white"
-            _hover={{bg: 'gray.600'}}
-            onClick={() => (amount = 1)}
-            borderRadius="md">
-            1
-          </Button>
-          <Button
-            variant="fill"
-            bg="black"
-            color="white"
-            _hover={{bg: 'gray.600'}}
-            onClick={() => (amount = 2)}
-            borderRadius="md">
-            2
-          </Button>
-          <Button
-            variant="fill"
-            bg="black"
-            color="white"
-            _hover={{bg: 'gray.600'}}
-            onClick={() => {
-              amount = 3
-              setPrice(stepPrice * amount)
-              console.log(amount)
-              console.log(price)
-            }}
-            borderRadius="md">
-            3
-          </Button>
-          <Button
-            variant="fill"
-            bg="black"
-            color="white"
-            _hover={{bg: 'gray.600'}}
-            onClick={() => null}
-            borderRadius="md"
-            px="-1">
-            4+
-          </Button>
-        </HStack>
+      <Box width="100%">
+        <Center mb="5">
+          <StaticImage
+            src="../../../images/logo.svg"
+            alt="logo"
+            className="logo"
+            imgClassName="logoimg"
+          />
+        </Center>
+        <Center>
+          <Text fontWeight="bold" fontSize="1.25rem" mb="5">
+            {props.text}
+          </Text>
+        </Center>
+        <Center>
+          <Wrap spacing="3">
+            <Button
+              variant="fill"
+              bg="black"
+              color="white"
+              _hover={{bg: 'gray.600'}}
+              onClick={() => {
+                setPrice(price + stepPrice)
+                setStep(step + 1)
+              }}
+              borderRadius="md">
+              1
+            </Button>
+            <Button
+              variant="fill"
+              bg="black"
+              color="white"
+              _hover={{bg: 'gray.600'}}
+              onClick={() => {
+                setPrice(price + stepPrice * 2)
+                setStep(step + 1)
+              }}
+              borderRadius="md">
+              2
+            </Button>
+            <Button
+              variant="fill"
+              bg="black"
+              color="white"
+              _hover={{bg: 'gray.600'}}
+              onClick={() => {
+                setPrice(price + stepPrice * 3)
+                setStep(step + 1)
+              }}
+              borderRadius="md">
+              3
+            </Button>
+            <Button
+              variant="fill"
+              bg="black"
+              color="white"
+              _hover={{bg: 'gray.600'}}
+              onClick={() => onToggle()}
+              borderRadius="md"
+              px="-1">
+              4+
+            </Button>
+          </Wrap>
+        </Center>
+        <Collapse in={isOpen} unmountOnExit animateOpacity>
+          <Center mt="5">
+            <NumberInput
+              value={amount}
+              onChange={value => setAmount(parseInt(value))}>
+              <NumberInputField />
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            </NumberInput>
+          </Center>
+          <Center>
+            <Button
+              mt="5"
+              variant="fill"
+              bg="black"
+              color="white"
+              _hover={{bg: 'gray.600'}}
+              onClick={() => {
+                setPrice(price + stepPrice * amount)
+                setStep(step + 1)
+              }}
+              borderRadius="md">
+              Eingabe Bestätigen
+            </Button>
+          </Center>
+        </Collapse>
       </Box>
     )
   }
 
   return (
     <Box width="100%">
-      <SeasonStep />
-      {/* <Step
-        current={0}
-        prev={0}
-        next={1}
-        text="Wie viele Personen über 10?"
-        icon=""
-      /> */}
+      {step === 0 ? (
+        <SeasonStep />
+      ) : (
+        <Step text="Wie viele Personen über 10?" icon="" />
+      )}
     </Box>
   )
 }

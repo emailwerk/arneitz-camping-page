@@ -117,9 +117,37 @@ const Calculator = () => {
     )
   }
 
-  const Step = (props: {text: string; icon: string}) => {
-    const stepPrice = 1
-    const [amount, setAmount] = React.useState<number>(3)
+  const Step = (props: {
+    text: string
+    icon: string
+    minValue: number
+    type: string
+    bikeshow: boolean
+  }) => {
+    const cleanPrice = (price: string) => {
+      return parseInt(price.replace(',-', ''))
+    }
+    let stepPrice: any = ''
+    console.log(data)
+    props.bikeshow
+      ? props.type === 'parking.camper'
+        ? (stepPrice = data[season].prices.parking.camper)
+        : props.type === 'parking.xxl'
+        ? (stepPrice = data[season].prices.parking.xxl)
+        : data[season].prices[props.type]
+      : props.type === 'parking.orange'
+      ? (stepPrice = data[season].prices.parking.orange)
+      : props.type === 'parking.turquoise'
+      ? (stepPrice = data[season].prices.parking.turquoise)
+      : props.type === 'minprice.orange'
+      ? (stepPrice = data[season].prices.minPrice.orange)
+      : props.type === 'minprice.turquoise'
+      ? (stepPrice = data[season].prices.minPrice.turquoise)
+      : (stepPrice = data[season].prices[props.type])
+    stepPrice === 'frei' || stepPrice === '-' ? (stepPrice = '0') : null
+    stepPrice = cleanPrice(stepPrice)
+    console.log(stepPrice)
+    const [amount, setAmount] = React.useState<number>(props.minValue + 3)
     const {isOpen, onToggle} = useDisclosure()
 
     return (
@@ -145,11 +173,11 @@ const Calculator = () => {
               color="white"
               _hover={{bg: 'blackAlpha.800'}}
               onClick={() => {
-                setPrice(price + stepPrice)
+                setPrice(price + stepPrice * props.minValue)
                 setStep(step + 1)
               }}
               borderRadius="md">
-              1
+              {props.minValue}
             </Button>
             <Button
               variant="fill"
@@ -157,11 +185,11 @@ const Calculator = () => {
               color="white"
               _hover={{bg: 'blackAlpha.800'}}
               onClick={() => {
-                setPrice(price + stepPrice * 2)
+                setPrice(price + stepPrice * (props.minValue + 1))
                 setStep(step + 1)
               }}
               borderRadius="md">
-              2
+              {props.minValue + 1}
             </Button>
             <Button
               variant="fill"
@@ -169,11 +197,11 @@ const Calculator = () => {
               color="white"
               _hover={{bg: 'blackAlpha.800'}}
               onClick={() => {
-                setPrice(price + stepPrice * 3)
+                setPrice(price + stepPrice * (props.minValue + 2))
                 setStep(step + 1)
               }}
               borderRadius="md">
-              3
+              {props.minValue + 2}
             </Button>
             <Button
               variant="fill"
@@ -183,7 +211,7 @@ const Calculator = () => {
               onClick={() => onToggle()}
               borderRadius="md"
               px="-1">
-              4+
+              {props.minValue + 3}+
             </Button>
           </Wrap>
         </Center>
@@ -224,7 +252,13 @@ const Calculator = () => {
       {step === 0 ? (
         <SeasonStep />
       ) : (
-        <Step text="Wie viele Personen über 10?" icon="" />
+        <Step
+          text="Wie viele Personen über 10?"
+          icon=""
+          minValue={1}
+          type="adult"
+          bikeshow={season === 'bikeshow'}
+        />
       )}
     </Box>
   )

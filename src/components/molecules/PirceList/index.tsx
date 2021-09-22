@@ -36,26 +36,26 @@ const PriceList = () => {
             <Flex>
               <fields.TextField
                 fieldName="pricelist-springseason-start"
-                initValue="<p>15.04.</p>"
+                initValue="<p>startDate</p>"
                 rtf={false}
               />
               <Text>-</Text>
               <fields.TextField
                 fieldName="pricelist-springseason-end"
-                initValue="<p>01.07.</p>"
+                initValue="<p>endDate</p>"
                 rtf={false}
               />
             </Flex>
             <Flex>
               <fields.TextField
                 fieldName="pricelist-autumnseason-start"
-                initValue="<p>12.09.</p>"
+                initValue="<p>startDate</p>"
                 rtf={false}
               />
               <Text>-</Text>
               <fields.TextField
                 fieldName="pricelist-autumnseason-end"
-                initValue="<p>30.09.</p>"
+                initValue="<p>endDate</p>"
                 rtf={false}
               />
             </Flex>
@@ -70,13 +70,13 @@ const PriceList = () => {
             <Flex>
               <fields.TextField
                 fieldName="pricelist-mainseason-start"
-                initValue="<p>01.07.</p>"
+                initValue="<p>startDate</p>"
                 rtf={false}
               />
               <Text>-</Text>
               <fields.TextField
                 fieldName="pricelist-mainseason-end"
-                initValue="<p>04.09.</p>"
+                initValue="<p>endDate</p>"
                 rtf={false}
               />
             </Flex>
@@ -85,22 +85,22 @@ const PriceList = () => {
         <StandardColumn
           icon={'Text'}
           text="(ab 10 Jahre)"
-          lowseasonPrice="9,-"
-          mainseasonPrice="10,-"
+          lowseasonPrice="priceAdult"
+          mainseasonPrice="priceAdult"
           fieldNameAddon="adult"
         />
         <StandardColumn
           icon={'Text'}
           text="(3-9 Jahre)"
-          lowseasonPrice="8,-"
-          mainseasonPrice="9,-"
+          lowseasonPrice="priceOver3"
+          mainseasonPrice="priceOver3"
           fieldNameAddon="over3"
         />
         <StandardColumn
           icon={'Text'}
           text="Kinder(0-2 Jahre)"
-          lowseasonPrice="frei"
-          mainseasonPrice="frei"
+          lowseasonPrice="priceUnder3"
+          mainseasonPrice="priceUnder3"
           fieldNameAddon="under3"
         />
         <Flex>
@@ -121,7 +121,7 @@ const PriceList = () => {
                 borderColor="white">
                 <fields.TextField
                   fieldName="pricelist-lowseason-blue-parking"
-                  initValue="<p>11,-</p>"
+                  initValue="<p>priceParking</p>"
                   rtf={false}
                 />
               </Box>
@@ -132,7 +132,7 @@ const PriceList = () => {
                 borderColor="white">
                 <fields.TextField
                   fieldName="pricelist-lowseason-orange-parking"
-                  initValue="<p>15,-</p>"
+                  initValue="<p>priceParking</p>"
                   rtf={false}
                 />
               </Box>
@@ -146,7 +146,7 @@ const PriceList = () => {
             borderColor="white">
             <fields.TextField
               fieldName="pricelist-mainseason-parking"
-              initValue="<p>16,-</p>"
+              initValue="<p>priceParking</p>"
             />
           </Box>
         </Flex>
@@ -160,28 +160,28 @@ const PriceList = () => {
         <StandardColumn
           icon={'Text'}
           text="Hund"
-          lowseasonPrice="5,-"
-          mainseasonPrice="5,-"
+          lowseasonPrice="priceDog"
+          mainseasonPrice="priceDog"
           fieldNameAddon="dog"
         />
         <StandardColumn
           icon={'Text'}
           text="extra Auto"
-          lowseasonPrice="5,-"
-          mainseasonPrice="5,-"
+          lowseasonPrice="priceCar"
+          mainseasonPrice="priceCar"
           fieldNameAddon="car"
         />
         <ColoredColumn
           bgcolor="teal.300"
           color="türkis"
-          lowseasonPrice="-"
-          mainseasonPrice="38,-"
+          lowseasonPrice="minPrice"
+          mainseasonPrice="minPrice"
         />
         <ColoredColumn
           bgcolor="orange"
           color="orange"
-          lowseasonPrice="-"
-          mainseasonPrice="43,-"
+          lowseasonPrice="minPrice"
+          mainseasonPrice="minPrice"
         />
       </Box>
       <Box className="bikeshow">
@@ -192,7 +192,7 @@ const PriceList = () => {
               <Box width="20%" textAlign="center">
                 <fields.TextField
                   fieldName="pricelist-bikeshow-start"
-                  initValue="<p>04.09.</p>"
+                  initValue="<p>startDate</p>"
                   rtf={false}
                 />
               </Box>
@@ -200,7 +200,7 @@ const PriceList = () => {
               <Box width="20%" textAlign="center">
                 <fields.TextField
                   fieldName="pricelist-bikeshow-end"
-                  initValue="<p>12.09.</p>"
+                  initValue="<p>endDate</p>"
                   rtf={false}
                 />
               </Box>
@@ -246,7 +246,7 @@ const PriceList = () => {
             'Text'
           ]}
           seperators={['inkl.', '/']}
-          initValues={['17,-', '9,-', '-']}
+          initValues={['priceAdult', 'priceChild', 'priceParking']}
           fieldNameAddon="person"
           type="bike-show"
         />
@@ -258,7 +258,7 @@ const PriceList = () => {
             'Text'
           ]}
           seperators={['oder']}
-          initValues={['-', '-', '10,-']}
+          initValues={['priceAdult', 'priceChild', 'priceParking']}
           fieldNameAddon="car"
           type="bike-show"
         />
@@ -270,14 +270,14 @@ const PriceList = () => {
             'Text'
           ]}
           seperators={['/']}
-          initValues={['-', '-', '20,-']}
+          initValues={['priceAdult', 'priceChild', 'priceParking']}
           fieldNameAddon="camper"
           type="bike-show"
         />
         <MultiIconColumn
           values={['XXL Camper', 'Caravan']}
           seperators={['/']}
-          initValues={['-', '-', '30,-']}
+          initValues={['priceAdult', 'priceChild', 'priceParking']}
           fieldNameAddon="xxl"
           type="bike-show"
         />
@@ -294,9 +294,8 @@ const PriceList = () => {
         <Flex>
           <Box width="40%" bg="gray.300" border="1px" borderColor="white">
             <Flex>
-              Text
+              {/* person icon */}
               {/* car icon */}
-              Text
             </Flex>
           </Box>
           <Box
@@ -307,7 +306,7 @@ const PriceList = () => {
             borderColor="white">
             <fields.TextField
               fieldName="pricelist-gti-price"
-              initValue="<p>17,-</p>"
+              initValue="<p>gtiPrice</p>"
               rtf={false}
             />
           </Box>

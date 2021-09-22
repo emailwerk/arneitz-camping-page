@@ -15,16 +15,23 @@ const PriceList = () => {
             rtf={false}
           />
         </Heading>
-        <fields.TextField
-          fieldName="pricelist-opendates"
-          initValie="<p>Geöffnet von 15. April bis 30. September 2021</p>"
-          rtf={false}
-        />
+        <Text>
+          <fields.TextField
+            fieldName="pricelist-opendates"
+            initValue="<p>Geöffnet von 15. April bis 30. September 2021</p>"
+            rtf={false}
+          />
+        </Text>
         <Flex>
-          <Box width="60%">
+          <Box width="60%" mt="auto">
             <Text fontSize="xs">Preis pro Nacht in Euro</Text>
           </Box>
-          <Box width="20%" textAlign="center">
+          <Box
+            width="20%"
+            textAlign="center"
+            bg="gray.300"
+            border="1px"
+            borderColor="white">
             <Heading fontSize="sm">Nebensaison</Heading>
             <Flex>
               <fields.TextField
@@ -53,7 +60,12 @@ const PriceList = () => {
               />
             </Flex>
           </Box>
-          <Box width="20%" textAlign="center">
+          <Box
+            width="20%"
+            textAlign="center"
+            bg="gray.400"
+            border="1px"
+            borderColor="white">
             <Heading fontSize="sm">Hauptsaison</Heading>
             <Flex>
               <fields.TextField
@@ -92,7 +104,7 @@ const PriceList = () => {
           fieldNameAddon="under3"
         />
         <Flex>
-          <Box width="60%">
+          <Box width="60%" bg="gray.300" border="1px" borderColor="white">
             <Text>Stellplatz</Text>
             <Flex>{/*icons*/}</Flex>
             <Flex>
@@ -102,14 +114,22 @@ const PriceList = () => {
           </Box>
           <Box width="20%">
             <Box>
-              <Box bg="teal.300" textAlign="center">
+              <Box
+                bg="teal.300"
+                textAlign="center"
+                border="1px"
+                borderColor="white">
                 <fields.TextField
                   fieldName="pricelist-lowseason-blue-parking"
                   initValue="<p>11,-</p>"
                   rtf={false}
                 />
               </Box>
-              <Box bg="orange" textAlign="center">
+              <Box
+                bg="orange"
+                textAlign="center"
+                border="1px"
+                borderColor="white">
                 <fields.TextField
                   fieldName="pricelist-lowseason-orange-parking"
                   initValue="<p>15,-</p>"
@@ -118,7 +138,12 @@ const PriceList = () => {
               </Box>
             </Box>
           </Box>
-          <Box width="20%" textAlign="center">
+          <Box
+            width="20%"
+            textAlign="center"
+            bg="gray.400"
+            border="1px"
+            borderColor="white">
             <fields.TextField
               fieldName="pricelist-mainseason-parking"
               initValue="<p>16,-</p>"
@@ -162,7 +187,7 @@ const PriceList = () => {
       <Box className="bikeshow">
         <Flex>
           <Box width="40%">
-            <Flex>
+            <Flex border="1px" borderColor="white" bg="gray.300">
               <Heading fontSize="sm">Arneitz Bike Show</Heading>
               <Box width="20%" textAlign="center">
                 <fields.TextField
@@ -181,16 +206,35 @@ const PriceList = () => {
               </Box>
             </Flex>
           </Box>
-          <Box width="20%" textAlign="center">
+          <Box
+            width="20%"
+            textAlign="center"
+            border="1px"
+            borderColor="white"
+            bg="gray.400">
             <Heading fontSize="sm">Erwachsener</Heading>
           </Box>
-          <Box width="20%" textAlign="center">
+          <Box
+            width="20%"
+            textAlign="center"
+            border="1px"
+            borderColor="white"
+            bg="gray.400">
             <Flex>
-              <Heading fontSize="sm">Kinder</Heading>
-              <Text ml="1">(3-9 J.)</Text>
+              <Heading fontSize="sm" ml="auto">
+                Kinder
+              </Heading>
+              <Text ml="1" mr="auto">
+                (3-9 J.)
+              </Text>
             </Flex>
           </Box>
-          <Box width="20%">
+          <Box
+            width="20%"
+            border="1px"
+            borderColor="white"
+            bg="gray.400"
+            textAlign="center">
             <Heading fontSize="sm">Stellplatz</Heading>
           </Box>
         </Flex>
@@ -240,20 +284,27 @@ const PriceList = () => {
       </Box>
       <Box className="gti">
         <Box width="100%">
-          <Flex>
-            <Heading fontSize="sm">GTI Treffen</Heading>
+          <Flex bg="gray.300" border="1px" borderColor="white">
+            <Heading fontSize="sm" mt="0.5">
+              GTI Treffen
+            </Heading>
             <Text ml="1">vor & nach dem Treffen</Text>
           </Flex>
         </Box>
         <Flex>
-          <Box width="40%">
+          <Box width="40%" bg="gray.300" border="1px" borderColor="white">
             <Flex>
               Text
               {/* car icon */}
               Text
             </Flex>
           </Box>
-          <Box width="60%" textAlign="center">
+          <Box
+            width="60%"
+            textAlign="center"
+            bg="gray.400"
+            border="1px"
+            borderColor="white">
             <fields.TextField
               fieldName="pricelist-gti-price"
               initValue="<p>17,-</p>"

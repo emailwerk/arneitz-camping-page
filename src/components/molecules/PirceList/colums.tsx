@@ -18,19 +18,29 @@ export const StandardColumn = ({
 }: StandardProps) => {
   return (
     <Flex fontSize="sm">
-      <Box width="60%">
+      <Box width="60%" border="1px" borderColor="white" bg="gray.300">
         <Heading fontSize="sm">
           {icon} {text}
         </Heading>
       </Box>
-      <Box width="20%" textAlign="center">
+      <Box
+        width="20%"
+        textAlign="center"
+        border="1px"
+        borderColor="white"
+        bg="gray.400">
         <fields.TextField
           fieldName={`pricelist-lowseason-${fieldNameAddon}`}
           initValue={`<p>${lowseasonPrice}</p>`}
           rtf={false}
         />
       </Box>
-      <Box width="20%" textAlign="center">
+      <Box
+        width="20%"
+        textAlign="center"
+        border="1px"
+        borderColor="white"
+        bg="gray.400">
         <fields.TextField
           fieldName={`pricelist-mainseason-${fieldNameAddon}`}
           initValue={`<p>${mainseasonPrice}</p>`}
@@ -86,15 +96,31 @@ export const MultiIconColumn = ({
 
   return (
     <Flex fontSize="sm">
-      <Box width={type === 'standard' ? '60%' : '40%'}>{seperatedValues}</Box>
-      <Box width="20%" textAlign="center">
+      <Box
+        width={type === 'standard' ? '60%' : '40%'}
+        bg="gray.300"
+        border="1px"
+        borderColor="white">
+        {seperatedValues}
+      </Box>
+      <Box
+        width="20%"
+        textAlign="center"
+        bg="gray.400"
+        border="1px"
+        borderColor="white">
         <fields.TextField
           fieldName={fieldNames[0]}
           initValue={initValues[0]}
           rtf={false}
         />
       </Box>
-      <Box width="20%" textAlign="center">
+      <Box
+        width="20%"
+        textAlign="center"
+        bg="gray.400"
+        border="1px"
+        borderColor="white">
         <fields.TextField
           fieldName={fieldNames[1]}
           initValue={initValues[1]}
@@ -102,7 +128,12 @@ export const MultiIconColumn = ({
         />
       </Box>
       {type === 'bike-show' ? (
-        <Box width="20%" textAlign="center">
+        <Box
+          width="20%"
+          textAlign="center"
+          bg="gray.400"
+          border="1px"
+          borderColor="white">
           <fields.TextField
             fieldName={fieldNames[2]}
             initValue={initValues[2]}
@@ -129,7 +160,7 @@ export const ColoredColumn = ({
 }: ColoredProps) => {
   return (
     <Flex bg={bgcolor} fontSize="sm">
-      <Box width="60%">
+      <Box width="60%" border="1px" borderColor="white" fontWeight="bold">
         <Text>Mindestgebühr</Text>
         <Flex>
           <Text>
@@ -139,14 +170,19 @@ export const ColoredColumn = ({
           {/* Icons */}
         </Flex>
       </Box>
-      <Box width="20%" textAlign="center">
+      <Box
+        width="20%"
+        textAlign="center"
+        border="1px"
+        borderColor="white"
+        verticalAlign="center">
         <fields.TextField
           fieldName={`pricelist-lowseason-${color}`}
           initValue={lowseasonPrice}
           rtf={false}
         />
       </Box>
-      <Box width="20%" textAlign="center">
+      <Box width="20%" textAlign="center" border="1px" borderColor="white">
         <fields.TextField
           fieldName={`pricelist-mainseason-${color}`}
           initValue={mainseasonPrice}

@@ -86,7 +86,7 @@ const CalculatorSection = () => {
   return (
     <Box>
       <Center>
-        <Box width="40%" border="1px" borderRadius="25px">
+        <Box width="40%" shadow="lg" borderRadius="25px">
           <CalculatorNavbar />
           <Box m="10">
             {active === 'pricelist' ? (

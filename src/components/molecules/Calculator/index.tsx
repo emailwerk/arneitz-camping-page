@@ -47,7 +47,7 @@ const Calculator = () => {
                 variant="fill"
                 bg="black"
                 color="white"
-                _hover={{bg: 'gray.600'}}
+                _hover={{bg: 'blackAlpha.800'}}
                 display="box"
                 minW="200px"
                 onClick={() => {
@@ -64,7 +64,7 @@ const Calculator = () => {
                 variant="fill"
                 bg="black"
                 color="white"
-                _hover={{bg: 'gray.600'}}
+                _hover={{bg: 'blackAlpha.800'}}
                 onClick={() => {
                   setSeason('mainseason')
                   setStep(1)
@@ -82,7 +82,7 @@ const Calculator = () => {
                 bg="black"
                 color="white"
                 display="box"
-                _hover={{bg: 'gray.600'}}
+                _hover={{bg: 'blackAlpha.800'}}
                 onClick={() => {
                   setSeason('autumnseason')
                   setStep(1)
@@ -99,7 +99,7 @@ const Calculator = () => {
                 bg="black"
                 color="white"
                 display="box"
-                _hover={{bg: 'gray.600'}}
+                _hover={{bg: 'blackAlpha.800'}}
                 onClick={() => {
                   setSeason('bikeshow')
                   setStep(1)
@@ -143,7 +143,7 @@ const Calculator = () => {
               variant="fill"
               bg="black"
               color="white"
-              _hover={{bg: 'gray.600'}}
+              _hover={{bg: 'blackAlpha.800'}}
               onClick={() => {
                 setPrice(price + stepPrice)
                 setStep(step + 1)
@@ -155,7 +155,7 @@ const Calculator = () => {
               variant="fill"
               bg="black"
               color="white"
-              _hover={{bg: 'gray.600'}}
+              _hover={{bg: 'blackAlpha.800'}}
               onClick={() => {
                 setPrice(price + stepPrice * 2)
                 setStep(step + 1)
@@ -167,7 +167,7 @@ const Calculator = () => {
               variant="fill"
               bg="black"
               color="white"
-              _hover={{bg: 'gray.600'}}
+              _hover={{bg: 'blackAlpha.800'}}
               onClick={() => {
                 setPrice(price + stepPrice * 3)
                 setStep(step + 1)
@@ -179,7 +179,7 @@ const Calculator = () => {
               variant="fill"
               bg="black"
               color="white"
-              _hover={{bg: 'gray.600'}}
+              _hover={{bg: 'blackAlpha.800'}}
               onClick={() => onToggle()}
               borderRadius="md"
               px="-1">

@@ -1,8 +1,10 @@
 import {
+  Flex,
   Box,
   Button,
   Center,
   Collapse,
+  Container,
   Heading,
   NumberDecrementStepper,
   NumberIncrementStepper,
@@ -24,6 +26,7 @@ const Calculator = () => {
   const [season, setSeason] = React.useState<string>('')
   const [price, setPrice] = React.useState<number>(0)
   const [step, setStep] = React.useState<number>(0)
+  const [parkingAddon, setParkingAddon] = React.useState<string>('')
 
   const SeasonStep = () => {
     return (
@@ -127,26 +130,30 @@ const Calculator = () => {
     const cleanPrice = (price: string) => {
       return parseInt(price.replace(',-', ''))
     }
-    let stepPrice: any = ''
     console.log(data)
-    props.bikeshow
-      ? props.type === 'parking.camper'
-        ? (stepPrice = data[season].prices.parking.camper)
+    let stepPrice: any = ''
+    if (props.bikeshow) {
+      props.type === 'parking.camper'
+        ? (stepPrice = data.bikeshow.prices.parking.camper)
         : props.type === 'parking.xxl'
-        ? (stepPrice = data[season].prices.parking.xxl)
-        : data[season].prices[props.type]
-      : props.type === 'parking.orange'
-      ? (stepPrice = data[season].prices.parking.orange)
-      : props.type === 'parking.turquoise'
-      ? (stepPrice = data[season].prices.parking.turquoise)
-      : props.type === 'minprice.orange'
-      ? (stepPrice = data[season].prices.minPrice.orange)
-      : props.type === 'minprice.turquoise'
-      ? (stepPrice = data[season].prices.minPrice.turquoise)
-      : (stepPrice = data[season].prices[props.type])
-    stepPrice === 'frei' || stepPrice === '-' ? (stepPrice = '0') : null
-    stepPrice = cleanPrice(stepPrice)
+        ? (stepPrice = data.bikeshow.prices.parking.xxl)
+        : (stepPrice = data.bikeshow.prices[props.type])
+    } else {
+      props.type === 'parking.orange'
+        ? (stepPrice = data[season].prices.parking.orange)
+        : props.type === 'parking.turquoise'
+        ? (stepPrice = data[season].prices.parking.turquoise)
+        : props.type === 'minPrice.orange'
+        ? (stepPrice = data[season].prices.minPrice.orange)
+        : props.type === 'minPrice.turquoise'
+        ? (stepPrice = data[season].prices.minPrice.turquoise)
+        : (stepPrice = data[season].prices[props.type])
+    }
+    stepPrice === 'frei' || stepPrice === '-' || stepPrice === 'priceUnder3'
+      ? (stepPrice = '0')
+      : null
     console.log(stepPrice)
+    stepPrice = cleanPrice(stepPrice)
     const [amount, setAmount] = React.useState<number>(props.minValue + 3)
     const {isOpen, onToggle} = useDisclosure()
 
@@ -243,25 +250,156 @@ const Calculator = () => {
             </Button>
           </Center>
         </Collapse>
+        {console.log(
+          'price:',
+          price,
+          'stepPrice:',
+          stepPrice,
+          'amount:',
+          amount
+        )}
       </Box>
     )
   }
 
-  return (
-    <Box width="100%">
-      {step === 0 ? (
-        <SeasonStep />
-      ) : (
-        <Step
-          text="Wie viele Personen über 10?"
-          icon=""
-          minValue={1}
-          type="adult"
-          bikeshow={season === 'bikeshow'}
-        />
-      )}
-    </Box>
-  )
+  const ParkingStep = (props: {bikeshow: boolean}) => {
+    let content: any = ''
+    if (season === 'mainseason') {
+      setStep(step + 1)
+    } else if (props.bikeshow) {
+      content = (
+        <>
+          <Text>Ist Ihr Fahrzeug länger als 7m?</Text>
+          <Flex>
+            <Button
+              onClick={() => {
+                setParkingAddon('xxl')
+                setStep(step + 1)
+              }}>
+              Ja
+            </Button>
+            <Button
+              onClick={() => {
+                setParkingAddon('camper')
+                setStep(step + 1)
+              }}>
+              Nein
+            </Button>
+          </Flex>
+        </>
+      )
+    } else {
+      content = (
+        <>
+          <Text>
+            Wollen Sie in einer orangen oder in einer türkisen Zone campen?
+          </Text>
+          <Flex>
+            <Button
+              onClick={() => {
+                setParkingAddon('orange')
+                setStep(step + 1)
+              }}>
+              Orange
+            </Button>
+            <Button
+              onClick={() => {
+                setParkingAddon('turquoise')
+                setStep(step + 1)
+              }}>
+              Türkis
+            </Button>
+          </Flex>
+        </>
+      )
+      setParkingAddon('orange')
+    }
+    return (
+      <Box width="100%">
+        <Center mb="5">
+          <StaticImage
+            src="../../../images/logo.svg"
+            alt="logo"
+            className="logo"
+            imgClassName="logoimg"
+          />
+        </Center>
+        <Container centerContent>{content}</Container>
+      </Box>
+    )
+  }
+
+  const ResultStep = () => {
+    return (
+      <Box width="100%">
+        <Center mb="5">
+          <StaticImage
+            src="../../../images/logo.svg"
+            alt="logo"
+            className="logo"
+            imgClassName="logoimg"
+          />
+        </Center>
+        <Container centerContent mt="5">
+          <Text fontSize="1.5rem">Preis pro Nacht</Text>
+          <Heading>{price}€</Heading>
+          <Button
+            mt="3"
+            variant="outline"
+            colorScheme="gray"
+            onClick={() => {
+              setStep(0)
+              setPrice(0)
+            }}>
+            Hier erneut berechnen
+          </Button>
+        </Container>
+      </Box>
+    )
+  }
+
+  const steps = [
+    <SeasonStep />,
+    <Step
+      text="Wie viele Personen über 10?"
+      bikeshow={season === 'bikeshow'}
+      type="adult"
+      icon=""
+      minValue={1}
+    />,
+    <Step
+      text="Wie viele Kinder über 3?"
+      bikeshow={season === 'bikeshow'}
+      type="over3"
+      icon=""
+      minValue={0}
+    />,
+    <Step
+      text="Wie viele Kinder unter 3?"
+      bikeshow={season === 'bikeshow'}
+      type="under3"
+      icon=""
+      minValue={0}
+    />,
+    <ParkingStep bikeshow={season === 'bikeshow'} />,
+    <Step
+      text="Benötigen Sie einen extra Stellplatz?"
+      bikeshow={season === 'bikeshow'}
+      type={season === 'mainseason' ? 'parking' : `parking.${parkingAddon}`}
+      icon=""
+      minValue={0}
+    />,
+    <Step
+      text="Benötigen Sie einen extra Parkplatz für ein Auto?"
+      bikeshow={season === 'bikeshow'}
+      type="car"
+      icon=""
+      minValue={0}
+    />,
+    <ResultStep />
+  ]
+
+  return <Box width="100%">{steps[step]}</Box>
 }
 
 export default Calculator

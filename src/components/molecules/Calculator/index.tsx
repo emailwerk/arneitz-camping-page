@@ -22,7 +22,6 @@ import * as style from './style'
 import fetchData from './fetch'
 
 const Calculator = () => {
-  let persistance: object[] = []
   const [data] = React.useState(fetchData())
   const [season, setSeason] = React.useState<string>('')
   const [price, setPrice] = React.useState<number>(0)
@@ -30,30 +29,6 @@ const Calculator = () => {
   const [parkingAddon, setParkingAddon] = React.useState<string>('')
 
   console.log(data)
-  const addPersistance = (
-    stepPrice: number,
-    choice: any,
-    currentPrice: number
-  ) => {
-    persistance.push({
-      stepPrice: stepPrice,
-      choice: choice,
-      price: currentPrice
-    })
-    localStorage.setItem('calculatorData', JSON.stringify(persistance))
-  }
-  const getPersistance = () => {
-    const temp = JSON.parse(localStorage.getItem('calculatorData') || '[]')
-    if (temp.length !== 0) {
-      console.log(temp)
-      console.log(temp.length)
-      setStep(temp.length - 1)
-      setPrice(temp[step].price || 0)
-      setSeason(temp[0].choice)
-    }
-    return temp
-  }
-  React.useEffect(() => (persistance = getPersistance()), [])
   const SeasonStep = () => {
     return (
       <style.logo>
@@ -82,7 +57,6 @@ const Calculator = () => {
                 onClick={() => {
                   setSeason('springseason')
                   setStep(1)
-                  addPersistance(0, 'springseason', price)
                 }}>
                 <Text>Nebensaison Frühling</Text>
                 <Text>
@@ -98,7 +72,6 @@ const Calculator = () => {
                 onClick={() => {
                   setSeason('mainseason')
                   setStep(1)
-                  addPersistance(0, 'mainseason', price)
                 }}
                 display="box"
                 minW="200px">
@@ -117,7 +90,6 @@ const Calculator = () => {
                 onClick={() => {
                   setSeason('autumnseason')
                   setStep(1)
-                  addPersistance(0, 'autumnseason', price)
                 }}
                 minW="200px">
                 <Text>Nebensaison Herbst</Text>
@@ -135,7 +107,6 @@ const Calculator = () => {
                 onClick={() => {
                   setSeason('bikeshow')
                   setStep(1)
-                  addPersistance(0, 'bikeshow', price)
                 }}
                 minW="200px">
                 <Text>Bikeshow</Text>
@@ -261,7 +232,6 @@ const Calculator = () => {
                 setChanged(true)
                 setPrice(price + stepPrice * props.minValue)
                 isParking === null ? setStep(step + 1) : null
-                addPersistance(stepPrice, props.minValue, price)
               }}
               borderRadius="md">
               {props.minValue}
@@ -278,7 +248,6 @@ const Calculator = () => {
                 setChanged(true)
                 setPrice(price + stepPrice * amount)
                 isParking === null ? setStep(step + 1) : null
-                addPersistance(stepPrice, amount, price)
               }}
               borderRadius="md">
               {props.minValue + 1}
@@ -295,7 +264,6 @@ const Calculator = () => {
                 setChanged(true)
                 setPrice(price + stepPrice * amount)
                 isParking === null ? setStep(step + 1) : null
-                addPersistance(stepPrice, amount, price)
               }}
               borderRadius="md">
               {props.minValue + 2}
@@ -338,7 +306,6 @@ const Calculator = () => {
                 setChanged(true)
                 setPrice(price + stepPrice * (props.minValue + customAmount))
                 isParking === null ? setStep(step + 1) : null
-                addPersistance(stepPrice, customAmount, price)
               }}
               borderRadius="md">
               Eingabe Bestätigen
@@ -367,7 +334,6 @@ const Calculator = () => {
               onClick={() => {
                 setParkingAddon('xxl')
                 setStep(step + 1)
-                addPersistance(0, 'yes', price)
               }}>
               Ja
             </Button>
@@ -379,7 +345,6 @@ const Calculator = () => {
               onClick={() => {
                 setParkingAddon('camper')
                 setStep(step + 1)
-                addPersistance(0, 'no', price)
               }}>
               Nein
             </Button>
@@ -402,7 +367,6 @@ const Calculator = () => {
               onClick={() => {
                 setParkingAddon('orange')
                 setStep(step + 1)
-                addPersistance(0, 'orange', price)
               }}>
               Orange
             </Button>
@@ -414,7 +378,6 @@ const Calculator = () => {
               onClick={() => {
                 setParkingAddon('turquoise')
                 setStep(step + 1)
-                addPersistance(0, 'turquoise', price)
               }}>
               Türkis
             </Button>

@@ -5,13 +5,14 @@
 //> Components
 import {Box} from '@chakra-ui/react'
 import CalculatorSection from '../components/organisms/CalculatorSection'
+import HeroSection from '../components/organisms/HeroSection'
 //#endregion
 
 //#region > Components
 const IndexPage = () => {
   return (
     <Box>
-      <CalculatorSection />
+      <HeroSection />
     </Box>
   )
 }

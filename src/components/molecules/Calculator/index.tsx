@@ -431,7 +431,7 @@ const Calculator = () => {
       bikeshow={season === 'bikeshow'}
       type={season === 'mainseason' ? 'parking' : `parking.${parkingAddon}`}
       icon=""
-      minValue={0}
+      minValue={1}
     />,
     <Step
       text="Benötigen Sie einen extra Parkplatz für ein Auto?"

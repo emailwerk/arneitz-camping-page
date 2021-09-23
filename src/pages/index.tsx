@@ -9,6 +9,7 @@ import HeroSection from '../components/organisms/HeroSection'
 import FactSection from '../components/organisms/FactSection'
 import ImageCollection from '../components/organisms/ImageCollection'
 import GroundsSection from '../components/organisms/GroundsSection'
+import VideoSection from '../components/organisms/VideoSection'
 //#endregion
 
 //#region > Components
@@ -17,6 +18,7 @@ const IndexPage = () => {
     <Box>
       <HeroSection />
       <FactSection />
+      <VideoSection />
       <CalculatorSection />
       <GroundsSection />
       <Center>

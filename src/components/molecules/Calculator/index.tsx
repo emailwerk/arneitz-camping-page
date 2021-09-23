@@ -50,7 +50,7 @@ const Calculator = () => {
                 variant="fill"
                 bg="black"
                 color="white"
-                _hover={{bg: 'blackAlpha.800'}}
+                _hover={{bg: 'blackAlpha.700'}}
                 display="box"
                 minW="200px"
                 onClick={() => {
@@ -67,7 +67,7 @@ const Calculator = () => {
                 variant="fill"
                 bg="black"
                 color="white"
-                _hover={{bg: 'blackAlpha.800'}}
+                _hover={{bg: 'blackAlpha.700'}}
                 onClick={() => {
                   setSeason('mainseason')
                   setStep(1)
@@ -85,7 +85,7 @@ const Calculator = () => {
                 bg="black"
                 color="white"
                 display="box"
-                _hover={{bg: 'blackAlpha.800'}}
+                _hover={{bg: 'blackAlpha.700'}}
                 onClick={() => {
                   setSeason('autumnseason')
                   setStep(1)
@@ -102,7 +102,7 @@ const Calculator = () => {
                 bg="black"
                 color="white"
                 display="box"
-                _hover={{bg: 'blackAlpha.800'}}
+                _hover={{bg: 'blackAlpha.700'}}
                 onClick={() => {
                   setSeason('bikeshow')
                   setStep(1)
@@ -156,6 +156,45 @@ const Calculator = () => {
     stepPrice = cleanPrice(stepPrice)
     const [amount, setAmount] = React.useState<number>(props.minValue + 3)
     const {isOpen, onToggle} = useDisclosure()
+    const [changed, setChanged] = React.useState<boolean>(false)
+
+    const isParking =
+      props.type.includes('parking') && season !== 'mainseason' ? (
+        <Container centerContent>
+          <Text>
+            Benötigen Sie noch weitere Stellplätze in einer anderen{' '}
+            {season === 'bikeshow' ? 'Größe' : 'Zone'}?
+          </Text>
+          <Flex>
+            <Button
+              mt="3"
+              variant="fill"
+              bg="black"
+              color="white"
+              _hover={{bg: 'blackAlpha.700'}}
+              onClick={() => {
+                setStep(step - 1)
+              }}
+              borderRadius="md"
+              px="-1">
+              Ja
+            </Button>
+            <Button
+              mt="3"
+              variant="fill"
+              bg="black"
+              color="white"
+              _hover={{bg: 'blackAlpha.700'}}
+              onClick={() => {
+                setStep(step + 1)
+              }}
+              borderRadius="md"
+              px="-1">
+              Nein
+            </Button>
+          </Flex>
+        </Container>
+      ) : null
 
     return (
       <Box width="100%">
@@ -175,46 +214,57 @@ const Calculator = () => {
         <Center>
           <Wrap spacing="3">
             <Button
+              disabled={changed}
+              _disabled={{bg: 'blackAlpha.700'}}
               variant="fill"
               bg="black"
               color="white"
-              _hover={{bg: 'blackAlpha.800'}}
+              _hover={{bg: 'blackAlpha.700'}}
               onClick={() => {
                 setPrice(price + stepPrice * props.minValue)
-                setStep(step + 1)
+                isParking === null ? setStep(step + 1) : setChanged(true)
               }}
               borderRadius="md">
               {props.minValue}
             </Button>
             <Button
+              disabled={changed}
+              _disabled={{bg: 'blackAlpha.700'}}
               variant="fill"
               bg="black"
               color="white"
-              _hover={{bg: 'blackAlpha.800'}}
+              _hover={{bg: 'blackAlpha.700'}}
               onClick={() => {
-                setPrice(price + stepPrice * (props.minValue + 1))
-                setStep(step + 1)
+                const multiplicator = props.minValue + 1
+                setPrice(price + stepPrice * multiplicator)
+                isParking === null ? setStep(step + 1) : setChanged(true)
               }}
               borderRadius="md">
               {props.minValue + 1}
             </Button>
             <Button
+              disabled={changed}
+              _disabled={{bg: 'blackAlpha.700'}}
               variant="fill"
               bg="black"
               color="white"
-              _hover={{bg: 'blackAlpha.800'}}
+              _hover={{bg: 'blackAlpha.700'}}
               onClick={() => {
-                setPrice(price + stepPrice * (props.minValue + 2))
-                setStep(step + 1)
+                const multiplicator = props.minValue + 2
+                setPrice(price + stepPrice * multiplicator)
+                isParking === null ? setStep(step + 1) : setChanged(true)
+                console.log(changed)
               }}
               borderRadius="md">
               {props.minValue + 2}
             </Button>
             <Button
+              disabled={changed}
+              _disabled={{bg: 'blackAlpha.700'}}
               variant="fill"
               bg="black"
               color="white"
-              _hover={{bg: 'blackAlpha.800'}}
+              _hover={{bg: 'blackAlpha.700'}}
               onClick={() => onToggle()}
               borderRadius="md"
               px="-1">
@@ -222,6 +272,7 @@ const Calculator = () => {
             </Button>
           </Wrap>
         </Center>
+        {isParking}
         <Collapse in={isOpen} unmountOnExit animateOpacity>
           <Center mt="5">
             <NumberInput
@@ -242,22 +293,15 @@ const Calculator = () => {
               color="white"
               _hover={{bg: 'gray.600'}}
               onClick={() => {
-                setPrice(price + stepPrice * amount)
-                setStep(step + 1)
+                const multiplicator = props.minValue + amount
+                setPrice(price + stepPrice * multiplicator)
+                isParking === null ? setStep(step + 1) : setChanged(true)
               }}
               borderRadius="md">
               Eingabe Bestätigen
             </Button>
           </Center>
         </Collapse>
-        {console.log(
-          'price:',
-          price,
-          'stepPrice:',
-          stepPrice,
-          'amount:',
-          amount
-        )}
       </Box>
     )
   }
@@ -383,7 +427,7 @@ const Calculator = () => {
     />,
     <ParkingStep bikeshow={season === 'bikeshow'} />,
     <Step
-      text="Benötigen Sie einen extra Stellplatz?"
+      text="Wie viele Stellplätze benötigen Sie?"
       bikeshow={season === 'bikeshow'}
       type={season === 'mainseason' ? 'parking' : `parking.${parkingAddon}`}
       icon=""
@@ -393,6 +437,13 @@ const Calculator = () => {
       text="Benötigen Sie einen extra Parkplatz für ein Auto?"
       bikeshow={season === 'bikeshow'}
       type="car"
+      icon=""
+      minValue={0}
+    />,
+    <Step
+      text="Wollen Sie einen Hund mitnehmen?"
+      bikeshow={season === 'bikeshow'}
+      type="dog"
       icon=""
       minValue={0}
     />,

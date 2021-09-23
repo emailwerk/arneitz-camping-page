@@ -22,12 +22,38 @@ import * as style from './style'
 import fetchData from './fetch'
 
 const Calculator = () => {
-  const data = fetchData()
+  let persistance: object[] = []
+  const [data] = React.useState(fetchData())
   const [season, setSeason] = React.useState<string>('')
   const [price, setPrice] = React.useState<number>(0)
   const [step, setStep] = React.useState<number>(0)
   const [parkingAddon, setParkingAddon] = React.useState<string>('')
 
+  console.log(data)
+  const addPersistance = (
+    stepPrice: number,
+    choice: any,
+    currentPrice: number
+  ) => {
+    persistance.push({
+      stepPrice: stepPrice,
+      choice: choice,
+      price: currentPrice
+    })
+    localStorage.setItem('calculatorData', JSON.stringify(persistance))
+  }
+  const getPersistance = () => {
+    const temp = JSON.parse(localStorage.getItem('calculatorData') || '[]')
+    if (temp.length !== 0) {
+      console.log(temp)
+      console.log(temp.length)
+      setStep(temp.length - 1)
+      setPrice(temp[step].price || 0)
+      setSeason(temp[0].choice)
+    }
+    return temp
+  }
+  React.useEffect(() => (persistance = getPersistance()), [])
   const SeasonStep = () => {
     return (
       <style.logo>
@@ -56,6 +82,7 @@ const Calculator = () => {
                 onClick={() => {
                   setSeason('springseason')
                   setStep(1)
+                  addPersistance(0, 'springseason', price)
                 }}>
                 <Text>Nebensaison Frühling</Text>
                 <Text>
@@ -71,6 +98,7 @@ const Calculator = () => {
                 onClick={() => {
                   setSeason('mainseason')
                   setStep(1)
+                  addPersistance(0, 'mainseason', price)
                 }}
                 display="box"
                 minW="200px">
@@ -89,6 +117,7 @@ const Calculator = () => {
                 onClick={() => {
                   setSeason('autumnseason')
                   setStep(1)
+                  addPersistance(0, 'autumnseason', price)
                 }}
                 minW="200px">
                 <Text>Nebensaison Herbst</Text>
@@ -106,6 +135,7 @@ const Calculator = () => {
                 onClick={() => {
                   setSeason('bikeshow')
                   setStep(1)
+                  addPersistance(0, 'bikeshow', price)
                 }}
                 minW="200px">
                 <Text>Bikeshow</Text>
@@ -154,19 +184,33 @@ const Calculator = () => {
       : null
     console.log(stepPrice)
     stepPrice = cleanPrice(stepPrice)
-    const [amount, setAmount] = React.useState<number>(props.minValue + 3)
+    const [customAmount, setCustomAmount] = React.useState<number>(
+      props.minValue + 3
+    )
     const {isOpen, onToggle} = useDisclosure()
     const [changed, setChanged] = React.useState<boolean>(false)
+
+    const logo = React.useMemo(() => {
+      return (
+        <StaticImage
+          src="../../../images/logo.svg"
+          alt="logo"
+          className="logo"
+          imgClassName="logoimg"
+        />
+      )
+    }, [])
 
     const isParking =
       props.type.includes('parking') && season !== 'mainseason' ? (
         <Container centerContent>
-          <Text>
+          <Text mt="3">
             Benötigen Sie noch weitere Stellplätze in einer anderen{' '}
             {season === 'bikeshow' ? 'Größe' : 'Zone'}?
           </Text>
           <Flex>
             <Button
+              mr="3"
               mt="3"
               variant="fill"
               bg="black"
@@ -198,14 +242,7 @@ const Calculator = () => {
 
     return (
       <Box width="100%">
-        <Center mb="5">
-          <StaticImage
-            src="../../../images/logo.svg"
-            alt="logo"
-            className="logo"
-            imgClassName="logoimg"
-          />
-        </Center>
+        <Center mb="5">{logo}</Center>
         <Center>
           <Text fontWeight="bold" fontSize="1.25rem" mb="5">
             {props.text}
@@ -221,8 +258,10 @@ const Calculator = () => {
               color="white"
               _hover={{bg: 'blackAlpha.700'}}
               onClick={() => {
+                setChanged(true)
                 setPrice(price + stepPrice * props.minValue)
-                isParking === null ? setStep(step + 1) : setChanged(true)
+                isParking === null ? setStep(step + 1) : null
+                addPersistance(stepPrice, props.minValue, price)
               }}
               borderRadius="md">
               {props.minValue}
@@ -235,9 +274,11 @@ const Calculator = () => {
               color="white"
               _hover={{bg: 'blackAlpha.700'}}
               onClick={() => {
-                const multiplicator = props.minValue + 1
-                setPrice(price + stepPrice * multiplicator)
-                isParking === null ? setStep(step + 1) : setChanged(true)
+                const amount = props.minValue + 1
+                setChanged(true)
+                setPrice(price + stepPrice * amount)
+                isParking === null ? setStep(step + 1) : null
+                addPersistance(stepPrice, amount, price)
               }}
               borderRadius="md">
               {props.minValue + 1}
@@ -250,10 +291,11 @@ const Calculator = () => {
               color="white"
               _hover={{bg: 'blackAlpha.700'}}
               onClick={() => {
-                const multiplicator = props.minValue + 2
-                setPrice(price + stepPrice * multiplicator)
-                isParking === null ? setStep(step + 1) : setChanged(true)
-                console.log(changed)
+                const amount = props.minValue + 2
+                setChanged(true)
+                setPrice(price + stepPrice * amount)
+                isParking === null ? setStep(step + 1) : null
+                addPersistance(stepPrice, amount, price)
               }}
               borderRadius="md">
               {props.minValue + 2}
@@ -276,8 +318,8 @@ const Calculator = () => {
         <Collapse in={isOpen} unmountOnExit animateOpacity>
           <Center mt="5">
             <NumberInput
-              value={amount}
-              onChange={value => setAmount(parseInt(value))}>
+              value={customAmount}
+              onChange={value => setCustomAmount(parseInt(value))}>
               <NumberInputField />
               <NumberInputStepper>
                 <NumberIncrementStepper />
@@ -293,9 +335,10 @@ const Calculator = () => {
               color="white"
               _hover={{bg: 'gray.600'}}
               onClick={() => {
-                const multiplicator = props.minValue + amount
-                setPrice(price + stepPrice * multiplicator)
-                isParking === null ? setStep(step + 1) : setChanged(true)
+                setChanged(true)
+                setPrice(price + stepPrice * (props.minValue + customAmount))
+                isParking === null ? setStep(step + 1) : null
+                addPersistance(stepPrice, customAmount, price)
               }}
               borderRadius="md">
               Eingabe Bestätigen
@@ -314,18 +357,29 @@ const Calculator = () => {
       content = (
         <>
           <Text>Ist Ihr Fahrzeug länger als 7m?</Text>
-          <Flex>
+          <Flex mt="5">
             <Button
+              mr="3"
+              variant="fill"
+              bg="black"
+              color="white"
+              borderRadius="md"
               onClick={() => {
                 setParkingAddon('xxl')
                 setStep(step + 1)
+                addPersistance(0, 'yes', price)
               }}>
               Ja
             </Button>
             <Button
+              variant="fill"
+              bg="black"
+              color="white"
+              borderRadius="md"
               onClick={() => {
                 setParkingAddon('camper')
                 setStep(step + 1)
+                addPersistance(0, 'no', price)
               }}>
               Nein
             </Button>
@@ -338,18 +392,29 @@ const Calculator = () => {
           <Text>
             Wollen Sie in einer orangen oder in einer türkisen Zone campen?
           </Text>
-          <Flex>
+          <Flex mt="5">
             <Button
+              variant="fill"
+              bg="orange"
+              color="white"
+              borderRadius="md"
+              mr="3"
               onClick={() => {
                 setParkingAddon('orange')
                 setStep(step + 1)
+                addPersistance(0, 'orange', price)
               }}>
               Orange
             </Button>
             <Button
+              variant="fill"
+              bg="teal.300"
+              color="white"
+              borderRadius="md"
               onClick={() => {
                 setParkingAddon('turquoise')
                 setStep(step + 1)
+                addPersistance(0, 'turquoise', price)
               }}>
               Türkis
             </Button>

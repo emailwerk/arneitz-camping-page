@@ -15,6 +15,7 @@ const HeroSection = () => {
         />
         <Center>
           <Container
+            pointerEvents="none"
             maxWidth="450px"
             centerContent
             position="absolute"

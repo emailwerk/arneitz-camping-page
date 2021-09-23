@@ -58,8 +58,8 @@ const FactSection = () => {
   }
 
   return (
-    <Box w="100%" pt="100vh">
-      <Container mt="20" mb="20" textAlign="center">
+    <Box w="100%" pt="100vh" mt="6%" mb="6%">
+      <Container mb="5" textAlign="center">
         <Heading>Erleben Sie eine Welt so vielfältig wie Ihre Wünsche</Heading>
       </Container>
       <Container centerContent maxW={{base: '100%', md: '40%'}}>

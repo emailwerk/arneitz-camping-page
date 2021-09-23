@@ -3,9 +3,12 @@
 
 // import BlogSection from '../../organisms/BlogSection'
 //> Components
-import {Box} from '@chakra-ui/react'
+import {Box, Center} from '@chakra-ui/react'
 import CalculatorSection from '../components/organisms/CalculatorSection'
 import HeroSection from '../components/organisms/HeroSection'
+import FactSection from '../components/organisms/FactSection'
+import ImageCollection from '../components/organisms/ImageCollection'
+import GroundsSection from '../components/organisms/GroundsSection'
 //#endregion
 
 //#region > Components
@@ -13,6 +16,12 @@ const IndexPage = () => {
   return (
     <Box>
       <HeroSection />
+      <FactSection />
+      <CalculatorSection />
+      <GroundsSection />
+      <Center>
+        <ImageCollection />
+      </Center>
     </Box>
   )
 }

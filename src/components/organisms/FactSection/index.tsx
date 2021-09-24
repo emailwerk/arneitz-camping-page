@@ -135,7 +135,7 @@ const FactSection = () => {
   }
 
   return (
-    <Box w="100%" pt="106vh" mb="10" bg="gray.100" pb="40vh" id="factsection">
+    <Box w="100%" pt="110vh" mb="10" bg="gray.100" pb="40vh" id="factsection">
       <Container mb="5" textAlign="center">
         <Heading>Erleben Sie eine Welt so vielfältig wie Ihre Wünsche</Heading>
       </Container>

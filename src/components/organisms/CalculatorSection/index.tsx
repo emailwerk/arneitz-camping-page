@@ -97,7 +97,7 @@ const CalculatorSection = () => {
   }
 
   return (
-    <Box mt="20" id="calculatorsection">
+    <Box mt="10rem" id="calculatorsection">
       <Center>
         <Box width={{base: '100%', md: '40%'}} shadow="lg" borderRadius="25px">
           <CalculatorNavbar />

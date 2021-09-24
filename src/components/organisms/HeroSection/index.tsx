@@ -1,4 +1,4 @@
-import {Box, Center, Container, Heading} from '@chakra-ui/react'
+import {Box, Center, Container, Heading, Stat} from '@chakra-ui/react'
 import {fields} from '@snek-at/jaen-pages'
 import {StaticImage} from 'gatsby-plugin-image'
 
@@ -13,24 +13,26 @@ const HeroSection = () => {
           initValue={{src: '', alt: 'herobackground'}}
           className="herobackground"
         />
-        <Center>
-          <Container
-            pointerEvents="none"
-            maxWidth="450px"
-            centerContent
-            position="absolute"
-            top="35vh"
-            textAlign="center">
-            <StaticImage
-              alt="logo"
-              src="../../../images/logo.svg"
-              className="herologo"
-            />
-            <Heading mt="5" fontSize="3rem">
-              Camping am Faaker See
-            </Heading>
-          </Container>
-        </Center>
+        <Box>
+          <Center>
+            <Container
+              pointerEvents="none"
+              maxWidth="450px"
+              centerContent
+              position="absolute"
+              top="35vh"
+              textAlign="center">
+              <StaticImage
+                alt="logo"
+                src="../../../images/logo.svg"
+                className="herologo"
+              />
+              <Heading mt="5" fontSize="3rem">
+                Camping am Faaker See
+              </Heading>
+            </Container>
+          </Center>
+        </Box>
       </Box>
     </HeroStyle>
   )

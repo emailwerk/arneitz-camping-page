@@ -29,7 +29,6 @@ const Calculator = () => {
   const [parkingAddon, setParkingAddon] = React.useState<string>('')
   const [changed, setChanged] = React.useState<boolean>(false)
 
-  console.log(data)
   const SeasonStep = () => {
     return (
       <style.logo>
@@ -132,7 +131,6 @@ const Calculator = () => {
     const cleanPrice = (price: string) => {
       return parseInt(price.replace(',-', ''))
     }
-    console.log(data)
     let stepPrice: any = ''
     if (props.bikeshow) {
       props.type === 'parking.camper'
@@ -154,7 +152,6 @@ const Calculator = () => {
     stepPrice === 'frei' || stepPrice === '-' || stepPrice === 'priceUnder3'
       ? (stepPrice = '0')
       : null
-    console.log(stepPrice)
     stepPrice = cleanPrice(stepPrice)
     const [customAmount, setCustomAmount] = React.useState<number>(
       props.minValue + 3

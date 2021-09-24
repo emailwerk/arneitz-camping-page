@@ -34,7 +34,7 @@ const Navbar = () => {
   const isMobile = useBreakpointValue({base: true, md: false})
 
   const listenScrollEvent = () => {
-    if (window.scrollY > document.documentElement.clientHeight) {
+    if (window.scrollY > 25) {
       setBgColor('white')
       setColor('black')
       setLogo(true)
@@ -60,7 +60,11 @@ const Navbar = () => {
       width="100%"
       height="85px"
       shadow={logo ? 'lg' : 'none'}>
-      <Flex mx="150" mt="5" fontSize="2rem" color={color}>
+      <Flex
+        mx="150"
+        mt={logo ? '6' : '4'}
+        fontSize={logo ? '1.75rem' : '2rem'}
+        color={color}>
         <Link to="" style={{marginTop: '5'}}>
           Home
         </Link>
@@ -71,7 +75,7 @@ const Navbar = () => {
           </Scroll.Link>
         </Box>
         <Spacer display={logo ? 'inline' : 'none'} />
-        <Box display={logo ? 'block' : 'none'} mt="-3">
+        <Box display={logo ? 'block' : 'none'} mt="-4">
           <LogoStyle>
             <StaticImage
               src="../../../images/logo.svg"
@@ -118,7 +122,7 @@ const Navbar = () => {
         <Collapse in={isOpen}>
           <VStack
             spacing="3"
-            fontSize="2rem"
+            fontSize="1.75rem"
             color={color}
             bg={bgColor}
             w="100vw">

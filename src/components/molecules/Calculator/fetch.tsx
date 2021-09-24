@@ -13,7 +13,6 @@ const fetchData = () => {
     springseason: {}
   }
   const seasons = ['autumnseason', 'bikeshow', 'mainseason', 'springseason']
-  console.log(fields)
   for (const season of seasons) {
     let object = {
       start: removePTags(

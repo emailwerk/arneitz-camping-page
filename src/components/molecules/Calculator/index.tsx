@@ -27,6 +27,7 @@ const Calculator = () => {
   const [price, setPrice] = React.useState<number>(0)
   const [step, setStep] = React.useState<number>(0)
   const [parkingAddon, setParkingAddon] = React.useState<string>('')
+  const [changed, setChanged] = React.useState<boolean>(false)
 
   console.log(data)
   const SeasonStep = () => {
@@ -159,7 +160,6 @@ const Calculator = () => {
       props.minValue + 3
     )
     const {isOpen, onToggle} = useDisclosure()
-    const [changed, setChanged] = React.useState<boolean>(false)
 
     const logo = React.useMemo(() => {
       return (
@@ -189,6 +189,7 @@ const Calculator = () => {
               _hover={{bg: 'blackAlpha.700'}}
               onClick={() => {
                 setStep(step - 1)
+                setChanged(false)
               }}
               borderRadius="md"
               px="-1">
@@ -202,6 +203,7 @@ const Calculator = () => {
               _hover={{bg: 'blackAlpha.700'}}
               onClick={() => {
                 setStep(step + 1)
+                setChanged(false)
               }}
               borderRadius="md"
               px="-1">
@@ -229,9 +231,8 @@ const Calculator = () => {
               color="white"
               _hover={{bg: 'blackAlpha.700'}}
               onClick={() => {
-                setChanged(true)
                 setPrice(price + stepPrice * props.minValue)
-                isParking === null ? setStep(step + 1) : null
+                isParking === null ? setStep(step + 1) : setChanged(true)
               }}
               borderRadius="md">
               {props.minValue}
@@ -245,9 +246,8 @@ const Calculator = () => {
               _hover={{bg: 'blackAlpha.700'}}
               onClick={() => {
                 const amount = props.minValue + 1
-                setChanged(true)
                 setPrice(price + stepPrice * amount)
-                isParking === null ? setStep(step + 1) : null
+                isParking === null ? setStep(step + 1) : setChanged(true)
               }}
               borderRadius="md">
               {props.minValue + 1}
@@ -261,9 +261,8 @@ const Calculator = () => {
               _hover={{bg: 'blackAlpha.700'}}
               onClick={() => {
                 const amount = props.minValue + 2
-                setChanged(true)
                 setPrice(price + stepPrice * amount)
-                isParking === null ? setStep(step + 1) : null
+                isParking === null ? setStep(step + 1) : setChanged(true)
               }}
               borderRadius="md">
               {props.minValue + 2}
@@ -282,7 +281,6 @@ const Calculator = () => {
             </Button>
           </Wrap>
         </Center>
-        {isParking}
         <Collapse in={isOpen} unmountOnExit animateOpacity>
           <Center mt="5">
             <NumberInput
@@ -312,6 +310,7 @@ const Calculator = () => {
             </Button>
           </Center>
         </Collapse>
+        {isParking}
       </Box>
     )
   }

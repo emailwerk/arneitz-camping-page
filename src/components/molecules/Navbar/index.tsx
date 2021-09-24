@@ -34,7 +34,7 @@ const Navbar = () => {
   const isMobile = useBreakpointValue({base: true, md: false})
 
   const listenScrollEvent = () => {
-    if (window.scrollY > 25) {
+    if (window.scrollY > 0) {
       setBgColor('white')
       setColor('black')
       setLogo(true)
@@ -121,6 +121,7 @@ const Navbar = () => {
         </Flex>
         <Collapse in={isOpen}>
           <VStack
+            shadow={logo ? 'lg' : 'none'}
             spacing="3"
             fontSize="1.75rem"
             color={color}

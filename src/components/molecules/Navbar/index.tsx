@@ -1,13 +1,27 @@
-import {Box, Flex, Spacer, useBreakpointValue} from '@chakra-ui/react'
+import {
+  Box,
+  Collapse,
+  Flex,
+  VStack,
+  IconButton,
+  Spacer,
+  useBreakpointValue,
+  useDisclosure
+} from '@chakra-ui/react'
 import {Link} from 'gatsby'
 import * as Scroll from 'react-scroll'
 import React from 'react'
 import {StaticImage} from 'gatsby-plugin-image'
 import styled from '@emotion/styled'
+import {HamburgerIcon} from '@chakra-ui/icons'
 
 const LogoStyle = styled(Box)`
   .logo {
     width: 200px;
+  }
+  .favicon {
+    width: 50px;
+    height: 50px;
   }
 `
 
@@ -15,6 +29,7 @@ const Navbar = () => {
   const [bgColor, setBgColor] = React.useState<string>('transparent')
   const [color, setColor] = React.useState<string>('white')
   const [logo, setLogo] = React.useState<boolean>(false)
+  const {isOpen, onToggle} = useDisclosure()
 
   const isMobile = useBreakpointValue({base: true, md: false})
 
@@ -73,7 +88,59 @@ const Navbar = () => {
     </Box>
   )
 
-  const mobileNavbar = <Box></Box>
+  const mobileNavbar = (
+    <LogoStyle>
+      <Box
+        position="fixed"
+        top="0"
+        left="0"
+        zIndex="10"
+        bg={bgColor}
+        width="100%"
+        height="85px"
+        shadow={logo ? 'lg' : 'none'}>
+        <Flex mt="5" color={color} width="100%" px="5">
+          <StaticImage
+            src="../../../images/favicon.svg"
+            alt="logo"
+            className="favicon"
+          />
+          <Spacer />
+          <IconButton
+            color={color}
+            aria-label="menu"
+            h="50px"
+            w="50px"
+            icon={<HamburgerIcon color="black" boxSize="40px" />}
+            onClick={() => onToggle()}
+          />
+        </Flex>
+        <Collapse in={isOpen}>
+          <VStack
+            spacing="3"
+            fontSize="2rem"
+            color={color}
+            bg={bgColor}
+            w="100vw">
+            <Link to="" style={{marginTop: '5'}}>
+              Home
+            </Link>
+            <Box cursor="pointer">
+              <Scroll.Link
+                smooth
+                isDynamic
+                to="calculatorsection"
+                offset={-100}>
+                Plan & Preise
+              </Scroll.Link>
+            </Box>
+            <Link to="">Anreise & Aufenthalt</Link>
+            <Link to="">Kontakt</Link>
+          </VStack>
+        </Collapse>
+      </Box>
+    </LogoStyle>
+  )
   const navbar = isMobile ? mobileNavbar : normalNavbar
 
   return navbar

@@ -2,7 +2,7 @@ import {AspectRatio, Box} from '@chakra-ui/react'
 
 const VideoSection = () => {
   return (
-    <Box mt="-20vh">
+    <Box mt="-20vh" mb="20">
       <AspectRatio ratio={16 / 10} maxW={{base: '100%', md: '50%'}} mx="auto">
         <iframe
           src="https://www.youtube.com/embed/3owx2vJHkv4"

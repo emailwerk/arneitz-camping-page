@@ -10,12 +10,14 @@ import FactSection from '../components/organisms/FactSection'
 import ImageCollection from '../components/organisms/ImageCollection'
 import GroundsSection from '../components/organisms/GroundsSection'
 import VideoSection from '../components/organisms/VideoSection'
+import Navbar from '../components/molecules/Navbar'
 //#endregion
 
 //#region > Components
 const IndexPage = () => {
   return (
     <Box>
+      <Navbar />
       <HeroSection />
       <FactSection />
       <VideoSection />
